@@ -1,18 +1,31 @@
 // src/App.tsx
 import React from 'react';
-import Header from './components/Header'; // Importa el nuevo componente
-import './index.css'; // Asegúrate de que tu CSS principal esté importado
+import Header from './components/Header'; 
+import HeroSection from './components/HeroSection'; 
+import FeaturedSection from './components/FeaturedSection'; // ¡Nuevo!
+import CtaSection from './components/CtaSection';         // ¡Nuevo!
+import Footer from './components/Footer';                 // ¡Nuevo!
+import './index.css'; 
 
 const App: React.FC = () => {
   return (
-    // <React.Fragment> o simplemente <>
     <>
       <Header />
       
-      {/* Contenido principal de la página, por ejemplo, una sección Hero */}
-      <main className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <h1 className="text-4xl font-bold text-gray-700">¡Bienvenidos al Restaurante!</h1>
+      <main>
+        <HeroSection />
+        
+        {/* 1. SECCIÓN DE ESPECIALIDADES */}
+        <FeaturedSection />
+        
+        {/* 2. BLOQUE DE LLAMADA A LA ACCIÓN */}
+        <CtaSection />
+        
+        {/* Aquí puedes añadir más secciones, como Testimonios o Sobre Nosotros */}
       </main>
+      
+      {/* 3. PIE DE PÁGINA */}
+      <Footer />
     </>
   );
 };
