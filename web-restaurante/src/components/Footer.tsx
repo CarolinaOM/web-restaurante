@@ -42,13 +42,26 @@ const Footer: React.FC = () => {
 
                 {/* Columna 3: Horario */}
                 <div>
-                    <h3 className={`text-lg font-bold mb-4 ${fuchsiaAccent}`}>Horario</h3>
-                    <p className="text-sm text-gray-700 font-semibold">Martes - Sábado:</p>
-                    <p className="text-sm text-gray-600">10:00 - 20:00</p>
-                    <p className="mt-2 text-sm text-gray-700 font-semibold">Domingo:</p>
-                    <p className="text-sm text-gray-600">10:00 - 14:00</p>
-                    <p className="mt-2 text-sm text-gray-700 font-semibold">Lunes:</p>
-                    <p className="text-sm text-gray-600">Cerrado</p>
+                    <h3 className={`text-lg font-bold mb-4 ${fuchsiaAccent}`}>Pedidos y Encargos</h3>
+
+                    <p className="text-sm text-gray-700 font-semibold mb-2">
+                    Todo se elabora bajo pedido.
+                    </p>
+
+                    <p className="text-sm text-gray-600">
+                    Aseguramos la máxima frescura y calidad en cada dulce.
+                    </p>
+
+                    <p className="mt-3 text-sm text-gray-700 font-semibold">
+                    Tiempo de preparación:
+                    </p>
+                    <p className="text-sm text-gray-600">
+                    **Mínimo 48 horas** (dependiendo del producto).
+                    </p>
+
+                    <p className="mt-3 text-sm text-gray-700">
+                    <a href="/contacto" className={`${hoverColor} font-semibold`}>¡Haz tu encargo hoy!</a>
+                    </p>
                 </div>
 
                 {/* Columna 4: Legal y Redes Sociales */}
