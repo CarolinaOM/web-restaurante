@@ -19,7 +19,6 @@ const FeaturedSection: React.FC = () => {
       titleColor: 'text-white', 
       textBg: 'bg-pink-600', 
       descriptionColor: 'text-white',
-      // CLAVE: Color de texto del botón
       buttonTextColor: 'text-pink-600', 
       buttonHoverBg: 'hover:bg-pink-100'
     },
@@ -32,7 +31,6 @@ const FeaturedSection: React.FC = () => {
       titleColor: 'text-white', 
       textBg: 'bg-fuchsia-700', 
       descriptionColor: 'text-white',
-      // CLAVE: Color de texto del botón
       buttonTextColor: 'text-fuchsia-700', 
       buttonHoverBg: 'hover:bg-fuchsia-100'
     },
@@ -45,7 +43,6 @@ const FeaturedSection: React.FC = () => {
       titleColor: 'text-white', 
       textBg: 'bg-purple-600', 
       descriptionColor: 'text-white',
-      // CLAVE: Color de texto del botón
       buttonTextColor: 'text-purple-600',
       buttonHoverBg: 'hover:bg-purple-100'
     },

@@ -15,15 +15,15 @@ const CtaSection: React.FC = () => {
                     ¿Listo para Endulzar tu Día?
                 </h2>
                 <p className="text-xl text-pink-100 mb-8">
-                    Visítanos hoy mismo en nuestra ubicación o reserva tu mesa para un momento especial.
+                   Haz tu pedido hoy mismo para disfrutar de un momento especial..
                 </p>
                 
                 <a 
-                    href="/reservas" 
+                    href="/pedidos" 
                     className={`inline-block px-10 py-3 text-lg font-bold uppercase tracking-wider rounded-full transition duration-300 shadow-xl 
                               ${buttonBaseBg} ${buttonBaseText} ${buttonHoverBg} transform hover:scale-105`}
                 >
-                    Ver Ubicación y Reservar
+                    Hacer Pedido Ahora
                 </a>
             </div>
         </section>

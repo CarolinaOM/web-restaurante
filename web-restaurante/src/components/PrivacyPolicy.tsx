@@ -2,7 +2,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import PrivacyPolicyContent from '../components/PrivacyPolicyContent'; // Importamos el contenido
+import PrivacyPolicyContent from '../components/PrivacyPolicyContent'; 
 
 const PrivacyPolicy: React.FC = () => {
   return (

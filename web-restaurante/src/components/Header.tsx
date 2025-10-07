@@ -14,12 +14,11 @@ const Header: React.FC = () => {
     { name: 'Inicio', href: '/' },
     { name: 'Menú', href: '/menu' },
     { name: 'Galería', href: '/galeria' },
-    { name: 'Ubicación/Contacto', href: '/contacto' },
-    { name: 'Reservas', href: '/reservas', isMobileButton: true }, 
+    { name: 'Contacto', href: '/contacto' },
+    { name: 'Pedidos', href: '/pedidos', isMobileButton: true }, 
   ];
 
   return (
-    // CLAVE: Usamos bg-pink-50 para que el fondo coincida con la Sección Hero
     <header className="bg-pink-50 shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-32"> 
@@ -47,15 +46,15 @@ const Header: React.FC = () => {
             ))}
           </nav>
 
-          {/* BOTÓN DE RESERVAS (ESCRITORIO) Y BOTÓN HAMBURGUESA (MÓVIL) */}
+          {/* BOTÓN DE PEDIDOS (ESCRITORIO) Y BOTÓN HAMBURGUESA (MÓVIL) */}
           <div className="flex items-center">
-            {/* Botón de "Reservar una Mesa" */}
+            {/* Botón de "Pedidos" */}
             <a 
-              href="/reservas" 
-              className={`hidden md:block ${buttonBaseBg} ${buttonHoverBg} text-white font-semibold py-2 px-4 rounded-full transition duration-300 shadow-lg text-sm`}
+               href="/pedidos" // Ahora apunta a la ruta de contacto/pedidos
+               className={`hidden md:block ${buttonBaseBg} ${buttonHoverBg} text-white font-semibold py-2 px-4 rounded-full transition duration-300 shadow-lg text-sm`}
             >
-              Reservas
-            </a>
+              ¡Hacer Pedido!
+             </a>
 
             {/* Menú Hamburguesa para Móviles */}
             <button 

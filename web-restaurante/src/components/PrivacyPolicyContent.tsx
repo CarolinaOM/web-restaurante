@@ -32,7 +32,7 @@ const PrivacyPolicyContent: React.FC = () => {
             <ul className="list-disc list-inside text-gray-700 ml-4 mb-6 space-y-2">
                 <li>Realiza un pedido o encargo.</li>
                 <li>Se suscribe a nuestro boletín de noticias.</li>
-                <li>Utiliza nuestro formulario de contacto o reservas.</li>
+                <li>Utiliza nuestro formulario de contacto o pedidos.</li>
             </ul>
             <p className="text-gray-700 mb-6">
                 Esta información puede incluir su **nombre, dirección de correo electrónico, número de teléfono y detalles de su pedido/encargo.**
