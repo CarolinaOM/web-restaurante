@@ -14,7 +14,9 @@ const Footer: React.FC = () => {
                 
                 {/* Columna 1: Logo y Contacto */}
                 <div>
-                    <img src={logoImage} alt="MacarmiDeli Logo" className="h-20 mb-3" />
+                    <a href="/">
+                        <img src={logoImage} alt="MacarmiDeli Logo" className="h-20 mb-3" />
+                    </a>
                     <p className="text-sm text-gray-600">
                         El dulce arte de la felicidad.
                     </p>
