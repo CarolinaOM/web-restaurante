@@ -18,11 +18,12 @@ const Footer: React.FC = () => {
                     <p className="text-sm text-gray-600">
                         El dulce arte de la felicidad.
                     </p>
+                    
+                    {/* CLAVE: Hemos eliminado las líneas del teléfono (línea 17 y 18 originales) */}
+                    
+                    {/* El Email ocupa ahora el lugar principal de contacto */}
                     <p className="mt-4 text-sm text-gray-700">
-                        <span className="font-semibold">Tel:</span> +34 555 123 456
-                    </p>
-                    <p className="text-sm text-gray-700">
-                        <span className="font-semibold">Email:</span> <a href="mailto:macarmideli@gmail.com" className={hoverColor}>macarmideli@gmail.com</a>
+                        <span className="font-semibold">Contactanos por:</span> <a href="mailto:macarmideli@gmail.com" className={hoverColor}>macarmideli@gmail.com</a>
                     </p>
                 </div>
 
@@ -58,8 +59,9 @@ const Footer: React.FC = () => {
                     
                     <h3 className={`text-lg font-bold mt-6 mb-3 ${fuchsiaAccent}`}>Síguenos</h3>
                     
-                    {/* ENLACE DE INSTAGRAM (SOLO ICONO RECONOCIBLE) */}
+                    {/* ENLACES DE REDES SOCIALES (ICONOS) */}
                     <div className="flex space-x-4">
+                        {/* Instagram */}
                         <a 
                             href="https://www.instagram.com/macarmideli/" 
                             className={`text-gray-500 ${hoverColor} transition duration-300`} 
@@ -67,9 +69,21 @@ const Footer: React.FC = () => {
                             target="_blank" 
                             rel="noopener noreferrer"
                         >
-                            {/* Icono SVG de Instagram (Más reconocible) */}
                             <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.071 1.17.055 1.83.245 2.39.467.57.228.98.532 1.42.973.44.44.74.85.97 1.42.22 0 .41.31.47 1.48.06 1.26.07 1.64.07 4.84v3.13c0 3.2-.01 3.58-.07 4.85-.06 1.17-.25 1.83-.47 2.39-.23.57-.53.98-.97 1.42-.44.44-.85.74-1.42.97-.56.22-1.22.41-2.39.47-1.26.06-1.64.07-4.85.07h-3.13c-3.2 0-3.58-.01-4.85-.07-1.17-.06-1.83-.25-2.39-.47-.57-.23-.98-.53-1.42-.97-.44-.44-.74-.85-.97-1.42-.22-.56-.41-1.22-.47-2.39-.06-1.27-.07-1.64-.07-4.85v-3.13c0-3.2.01-3.58.07-4.85.06-1.17.25-1.83.47-2.39.23-.57.53-.98.97-1.42.44-.44.85-.74 1.42-.97.56-.22 1.22-.41 2.39-.47 1.26-.06 1.64-.07 4.85-.07h3.13zm-1.05 3.32h-1.03c-2.45 0-2.73 0-3.68.04-1.07.05-1.78.23-2.28.43-.5.2-.87.48-1.2.81-.33.33-.61.7-.81 1.2-.2.5-.38 1.21-.43 2.28-.04.95-.04 1.23-.04 3.68v1.03c0 2.45 0 2.73.04 3.68.05 1.07.23 1.78.43 2.28.2.5.48.87.81 1.2.33.33.7.61 1.2.81.5.2 1.21.38 2.28.43.95.04 1.23.04 3.68.04h1.03c2.45 0 2.73 0 3.68-.04 1.07-.05 1.78-.23 2.28-.43.5-.2.87-.48 1.2-.81.33-.33.61-.7.81-1.2.2-.5.38-1.21.43-2.28.04-.95.04-1.23.04-3.68v-1.03c0-2.45 0-2.73-.04-3.68-.05-1.07-.23-1.78-.43-2.28-.2-.5-.48-.87-.81-1.2-.33-.33-.7-.61-1.2-.81-.5-.2-1.21-.38-2.28-.43-.95-.04-1.23-.04-3.68-.04zM12 7.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9zm0 7.3a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6zm4.8-6.9a1.04 1.04 0 1 0 0 2.08 1.04 1.04 0 0 0 0-2.08z"/>
+                                <path d="M7.74 2h8.52C18.66 2 21 4.34 21 7.74v8.52c0 3.4-2.34 5.74-4.74 5.74H7.74C4.34 22 2 19.66 2 16.26V7.74C2 4.34 4.34 2 7.74 2zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm4.8-6.2a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4z"/>
+                            </svg>
+                        </a>
+
+                        {/* Facebook */}
+                        <a 
+                            href="https://www.facebook.com/macarmideli.macarmideli" 
+                            className={`text-gray-500 ${hoverColor} transition duration-300`} 
+                            aria-label="Facebook de MacarmiDeli"
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                        >
+                            <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.63 9.15 8.36 9.87V15H7.72v-3h2.64V9.75c0-2.61 1.59-4.04 3.92-4.04 1.12 0 2.08.08 2.36.12v2.7h-1.65c-1.29 0-1.54.61-1.54 1.51V12h3.04l-.49 3h-2.55v6.87C18.37 21.15 22 16.99 22 12z"/>
                             </svg>
                         </a>
                     </div>
