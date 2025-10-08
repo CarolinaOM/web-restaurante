@@ -211,13 +211,16 @@ const PedidoForm: React.FC = () => {
                     <div>
                         <label htmlFor="producto" className={labelStyle}>¿Qué deseas encargar?</label>
                         <select id="producto" name="producto" value={formData.producto} onChange={handleChange} required className={inputStyle}>
-                            <option value="tartas">Tartas</option>
+                            <option value="tartas">Bizcocho</option>
+                            <option value="galletas">Tartas</option>
+                            <option value="galletas">Marquesa</option>
                             <option value="cupcakes">Cupcakes</option>
-                            <option value="galletas">Galletas</option>
-                            <option value="rosquetes">Rosquetes</option>
                             <option value="golfeado">Golfeado</option>
-                            <option value="pan_de_leche">Pan de Leche</option>
+                            <option value="golfeado">Rols de Canela</option>
+                            <option value="rosquetes">Rosquetes</option>
                             <option value="pan_de_jamon">Pan de Jamón</option>
+                            <option value="pan_de_leche">Pan de Leche</option>
+                            <option value="pan_de_jamon">Tequeños</option>
                             <option value="otro">Otro Postre</option>
                         </select>
                     </div>
