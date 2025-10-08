@@ -1,4 +1,4 @@
-// src/components/PedidoForm.tsx (VERSIÓN FINAL CON VALIDACIONES Y MEJORAS UX)
+// src/components/PedidoForm.tsx
 import React, { useState } from 'react';
 
 // Define la estructura del estado de errores de validación
@@ -6,16 +6,16 @@ interface ValidationErrors {
     nombre?: string;
     _replyto?: string;
     telefono?: string;
-    [key: string]: string | undefined; // Permite acceder por cualquier string
+    [key: string]: string | undefined; 
 }
 
 const PedidoForm: React.FC = () => {
     
-    // ⚠️ ¡IMPORTANTE! MANTÉN TU URL REAL DE FORMSPREE AQUÍ
-    const FORMSPREE_URL = 'https://formspree.io/f/mldpwwkg'; // <--- ¡Asegúrate de que esta es tu URL!
+    //FORMSPREE
+    const FORMSPREE_URL = 'https://formspree.io/f/mldpwwkg'; 
     
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-    const [validationErrors, setValidationErrors] = useState<ValidationErrors>({}); // Nuevo estado para errores
+    const [validationErrors, setValidationErrors] = useState<ValidationErrors>({}); 
 
     const [formData, setFormData] = useState({
         nombre: '',
@@ -33,7 +33,7 @@ const PedidoForm: React.FC = () => {
         const errors: ValidationErrors = {};
         let isValid = true;
 
-        // 1. Validación del Nombre (SOLO LETRAS Y ESPACIOS, usando el flag 'u' para Unicode)
+        // 1. Validación del Nombre 
         const nameRegex = /^[\p{L}\s]+$/u; 
 
         if (!formData.nombre.trim()) {
@@ -44,14 +44,14 @@ const PedidoForm: React.FC = () => {
             isValid = false;
         }
 
-        // 2. Validación del Correo Electrónico (Patrón básico: user@dominio.com)
+        // 2. Validación del Correo Electrónico 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!formData._replyto || !emailRegex.test(formData._replyto)) {
             errors._replyto = 'El correo electrónico no tiene un formato válido (ej: nombre@dominio.com).';
             isValid = false;
         }
 
-        // 3. Validación del Teléfono (Solo Números)
+        // 3. Validación del Teléfono 
         const phoneRegex = /^[0-9]+$/;
         if (!formData.telefono.trim() || !phoneRegex.test(formData.telefono)) {
             errors.telefono = 'El teléfono solo puede contener números.';
@@ -68,7 +68,7 @@ const PedidoForm: React.FC = () => {
             ...formData,
             [e.target.name]: e.target.value
         });
-        // Opcional: Limpiar el error cuando el usuario empieza a escribir
+       
         if (validationErrors[e.target.name]) {
             setValidationErrors(prev => ({ ...prev, [e.target.name]: undefined }));
         }
@@ -110,7 +110,6 @@ const PedidoForm: React.FC = () => {
         }
     };
 
-    // Estilos
     const inputStyle = "w-full p-3 border border-gray-300 rounded-lg focus:ring-pink-500 focus:border-pink-500 transition duration-150 shadow-sm";
     const errorInputStyle = "w-full p-3 border border-red-500 rounded-lg focus:ring-red-500 focus:border-red-500 transition duration-150 shadow-sm";
     const labelStyle = "block text-sm font-medium text-gray-700 mb-1";
@@ -126,7 +125,7 @@ const PedidoForm: React.FC = () => {
         >
             <h2 className="text-3xl font-bold text-fuchsia-700 mb-6 text-center">Detalles del Encargo</h2>
             
-            {/* ⬅️ MEJORA UX: AVISO IMPORTANTE */}
+            {/* MEJORA UX */}
             <div className="mb-8 p-4 bg-pink-100 border-l-4 border-fuchsia-500 text-sm text-gray-700 rounded">
                 <p className="font-semibold mb-1">¡Importante antes de pedir!</p>
                 <ul className="list-disc list-inside space-y-1 ml-4">
@@ -257,7 +256,7 @@ const PedidoForm: React.FC = () => {
                     />
                 </div>
 
-                {/* ⬅️ MEJORA UX: CHECKBOX DE ACEPTACIÓN OBLIGATORIA */}
+                {/* CHECKBOX DE ACEPTACIÓN OBLIGATORIA */}
                 <div className="mt-6">
                     <label className="flex items-center">
                         <input 
