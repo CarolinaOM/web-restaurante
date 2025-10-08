@@ -1,4 +1,4 @@
-// src/components/PedidoForm.tsx (VERSIÓN CON VALIDACIONES DE FORMATO - CORRECCIÓN NOMBRE)
+// src/components/PedidoForm.tsx (VERSIÓN FINAL CON VALIDACIONES Y MEJORAS UX)
 import React, { useState } from 'react';
 
 // Define la estructura del estado de errores de validación
@@ -33,8 +33,7 @@ const PedidoForm: React.FC = () => {
         const errors: ValidationErrors = {};
         let isValid = true;
 
-        // 1. Validación del Nombre (SOLO LETRAS Y ESPACIOS)
-        // \p{L} = Cualquier tipo de letra en cualquier idioma. \s = espacio.
+        // 1. Validación del Nombre (SOLO LETRAS Y ESPACIOS, usando el flag 'u' para Unicode)
         const nameRegex = /^[\p{L}\s]+$/u; 
 
         if (!formData.nombre.trim()) {
@@ -127,6 +126,17 @@ const PedidoForm: React.FC = () => {
         >
             <h2 className="text-3xl font-bold text-fuchsia-700 mb-6 text-center">Detalles del Encargo</h2>
             
+            {/* ⬅️ MEJORA UX: AVISO IMPORTANTE */}
+            <div className="mb-8 p-4 bg-pink-100 border-l-4 border-fuchsia-500 text-sm text-gray-700 rounded">
+                <p className="font-semibold mb-1">¡Importante antes de pedir!</p>
+                <ul className="list-disc list-inside space-y-1 ml-4">
+                    <li>Tiempo de elaboración: Solicitamos un mínimo de <strong className="text-fuchsia-800">7 días de antelación</strong> para garantizar la disponibilidad.</li>
+                    <li>**Entrega/Recogida:** Los pedidos se recogen en el **lugar pautado** previamente. El servicio de envío tiene un costo adicional que será calculado en la confirmación.</li>
+                    <li>El presupuesto final se enviará a tu correo tras revisar tu solicitud.</li>
+                </ul>
+            </div>
+            {/* FIN MEJORA UX */}
+
             {/* Mensajes de feedback */}
             {status === 'success' && (
                 <div className="p-4 mb-4 rounded-lg bg-green-500 text-white font-semibold text-center">
@@ -157,7 +167,6 @@ const PedidoForm: React.FC = () => {
                             required 
                             className={validationErrors.nombre ? errorInputStyle : inputStyle} 
                         />
-                        {/* El mensaje de error ahora se activará cuando haya números al intentar enviar */}
                         {validationErrors.nombre && <p className={errorTextStyle}>{validationErrors.nombre}</p>}
                     </div>
                     
@@ -248,6 +257,21 @@ const PedidoForm: React.FC = () => {
                     />
                 </div>
 
+                {/* ⬅️ MEJORA UX: CHECKBOX DE ACEPTACIÓN OBLIGATORIA */}
+                <div className="mt-6">
+                    <label className="flex items-center">
+                        <input 
+                            type="checkbox" 
+                            required 
+                            className="form-checkbox h-5 w-5 text-fuchsia-600 border-gray-300 rounded focus:ring-fuchsia-500"
+                        />
+                        <span className="ml-2 text-sm text-gray-700">
+                            Confirmo que he leído la nota de <strong className="text-fuchsia-700">7 días de antelación</strong> y entiendo que esta es una solicitud, no un pedido confirmado.
+                        </span>
+                    </label>
+                </div>
+                {/* FIN MEJORA UX */}
+
                 {/* Botón de Enviar */}
                 <button 
                     type="submit" 
@@ -258,7 +282,7 @@ const PedidoForm: React.FC = () => {
                     {status === 'sending' ? 'Enviando Solicitud...' : 'Enviar Solicitud de Pedido'}
                 </button>
                 <p className="text-center text-sm text-gray-600 mt-3">
-                    Nota: Esto es una solicitud. Te contactaremos para confirmar disponibilidad y el precio final.
+                    Nota: Te contactaremos para confirmar disponibilidad y el precio final.
                 </p>
 
             </div>
