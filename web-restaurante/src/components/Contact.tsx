@@ -2,8 +2,11 @@
 import React from 'react';
 import Header from './Header'; 
 import Footer from './Footer'; 
+import { useForm, ValidationError } from '@formspree/react';
+// 🔑 Importación de la ID del formulario (obtenida de environment.ts)
+import { FORMSPREE_CONTACT_ID } from '../config/environment'; 
 
-// 🔑 Componente Auxiliar para los Íconos de Redes Sociales
+// Componente Auxiliar para los Íconos de Redes Sociales
 const SocialIcons: React.FC = () => (
     <div className="flex justify-center lg:justify-start space-x-6 mt-4">
         {/* Instagram */}
@@ -32,6 +35,44 @@ const SocialIcons: React.FC = () => (
 
 
 const Contact: React.FC = () => {
+    // 🔑 USO DE LA CONSTANTE: useForm obtiene la ID del archivo environment.ts
+    const [state, handleSubmit] = useForm(FORMSPREE_CONTACT_ID);  
+
+    // Función para manejar la pulsación de teclas y permitir solo letras y espacio
+    const handleNameKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        // Expresión regular que coincide con caracteres que NO son letras o espacio
+        const isNotLetterOrSpace = !/[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]/.test(event.key);
+        
+        if (event.key.length > 1) {
+            return;
+        }
+
+        if (isNotLetterOrSpace) {
+            event.preventDefault(); // Detiene la entrada si no es una letra o espacio
+        }
+    };
+    
+    // Muestra un mensaje de éxito si el formulario se envió correctamente
+    if (state.succeeded) {
+        return (
+            <>
+                <Header />
+                <div className="bg-pink-50 min-h-screen py-32 text-center">
+                    <div className="max-w-xl mx-auto p-10 bg-white rounded-xl shadow-2xl">
+                        <h2 className="text-4xl font-extrabold text-fuchsia-700 mb-4">¡Mensaje Enviado!</h2>
+                        <p className="text-xl text-gray-600">
+                            Gracias por contactarnos. Te responderemos a la brevedad.
+                        </p>
+                        <a href="/" className="mt-8 inline-block bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+                            Volver a la Home
+                        </a>
+                    </div>
+                </div>
+                <Footer />
+            </>
+        );
+    }
+
     return (
         <>
             <Header />
@@ -52,13 +93,15 @@ const Contact: React.FC = () => {
                     {/* Contenedor de Dos Columnas (Formulario e Info) */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
                         
-                        {/* COLUMNA 1: FORMULARIO DE CONTACTO */}
+                        {/* COLUMNA 1: FORMULARIO DE CONTACTO (Integrado con Formspree) */}
                         <div className="bg-white p-8 rounded-xl shadow-2xl border border-pink-200 hover:shadow-pink-400/70 transition duration-300">
                             <h2 className="text-3xl font-bold text-pink-600 mb-6 border-b pb-2">
                                 Envíanos un Mensaje Rápido
                             </h2>
-                            <form className="space-y-6">
-                                {/* Campos de Formulario (sin cambios) */}
+                            {/* Uso de handleSubmit de Formspree */}
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                
+                                {/* Campo Nombre - MODIFICADO para aceptar solo letras */}
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nombre Completo</label>
                                     <input 
@@ -66,10 +109,17 @@ const Contact: React.FC = () => {
                                         id="name" 
                                         name="name" 
                                         placeholder="Tu Nombre"
+                                        // Validación en tiempo real para evitar números/símbolos
+                                        onKeyPress={handleNameKeyPress}
+                                        // Patrón de validación HTML5 (solo letras y espacios)
+                                        pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
+                                        title="Solo se permiten letras y espacios."
                                         className="mt-1 block w-full px-4 py-2 border border-pink-300 rounded-lg shadow-sm focus:border-fuchsia-600 focus:ring-fuchsia-600 transition duration-150 focus:ring-2"
                                         required
                                     />
                                 </div>
+                                
+                                {/* Campo Email (sin cambios) */}
                                 <div>
                                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">Correo Electrónico</label>
                                     <input 
@@ -80,7 +130,10 @@ const Contact: React.FC = () => {
                                         className="mt-1 block w-full px-4 py-2 border border-pink-300 rounded-lg shadow-sm focus:border-fuchsia-600 focus:ring-fuchsia-600 transition duration-150 focus:ring-2"
                                         required
                                     />
+                                    <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-sm mt-1" />
                                 </div>
+                                
+                                {/* Campo Mensaje (sin cambios) */}
                                 <div>
                                     <label htmlFor="message" className="block text-sm font-medium text-gray-700">Tu Mensaje</label>
                                     <textarea 
@@ -91,13 +144,16 @@ const Contact: React.FC = () => {
                                         className="mt-1 block w-full px-4 py-2 border border-pink-300 rounded-lg shadow-sm focus:border-fuchsia-600 focus:ring-fuchsia-600 transition duration-150 focus:ring-2"
                                         required
                                     ></textarea>
+                                    <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-sm mt-1" />
                                 </div>
+                                
                                 {/* Botón de Envío */}
                                 <button
                                     type="submit"
-                                    className="w-full bg-gradient-to-r from-pink-500 to-fuchsia-600 hover:from-pink-600 hover:to-fuchsia-700 text-white font-extrabold py-4 px-6 rounded-full transition duration-300 shadow-xl shadow-fuchsia-500/50 transform hover:scale-[1.01]"
+                                    disabled={state.submitting} 
+                                    className="w-full bg-gradient-to-r from-pink-500 to-fuchsia-600 hover:from-pink-600 hover:to-fuchsia-700 text-white font-extrabold py-4 px-6 rounded-full transition duration-300 shadow-xl shadow-fuchsia-500/50 transform hover:scale-[1.01] disabled:opacity-50"
                                 >
-                                    Enviar Dulce Mensaje
+                                    {state.submitting ? 'Enviando...' : 'Enviar Dulce Mensaje'}
                                 </button>
                             </form>
                         </div>
@@ -128,7 +184,7 @@ const Contact: React.FC = () => {
 
                     </div>
 
-                    {/* ➡️ CTA A PEDIDOS: REEMPLAZADO POR UN BOTÓN GRANDE Y CENTRAL */}
+                    {/* CTA A PEDIDOS */}
                     <div className="mt-12 text-center max-w-lg mx-auto">
                         <h3 className="text-2xl font-bold text-gray-700 mb-4">
                             ¿Listo para hacer tu encargo?

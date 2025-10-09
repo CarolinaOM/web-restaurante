@@ -1,5 +1,7 @@
 // src/components/PedidoForm.tsx
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react'; 
+import { FORMSPREE_PEDIDO_URL } from '../config/environment'; // Importa la URL del pedido
 
 // Define la estructura del estado de errores de validación
 interface ValidationErrors {
@@ -11,8 +13,8 @@ interface ValidationErrors {
 
 const PedidoForm: React.FC = () => {
     
-    //FORMSPREE
-    const FORMSPREE_URL = 'https://formspree.io/f/mldpwwkg'; 
+    // FORMSPREE: La URL de destino del formulario (se carga de environment.ts)
+    const FORMSPREE_URL = FORMSPREE_PEDIDO_URL;
     
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
     const [validationErrors, setValidationErrors] = useState<ValidationErrors>({}); 
@@ -21,33 +23,50 @@ const PedidoForm: React.FC = () => {
         nombre: '',
         _replyto: '',
         telefono: '',
-        producto: 'tartas', 
+        producto: 'tartas', // Valor inicial para el <select>
         cantidad: 12,
         sabor: '',
         fechaEntrega: '',
         comentarios: ''
     });
 
+    // LÓGICA PARA OCULTAR EL MENSAJE DE ÉXITO AUTOMÁTICAMENTE
+    useEffect(() => {
+        let timer: NodeJS.Timeout | null = null;
+        
+        if (status === 'success') {
+            timer = setTimeout(() => {
+                setStatus('idle');
+            }, 5000); 
+        }
+
+        return () => {
+            if (timer) {
+                clearTimeout(timer);
+            }
+        };
+    }, [status]); 
+
     // Función de validación
     const validate = () => {
         const errors: ValidationErrors = {};
         let isValid = true;
 
-        // 1. Validación del Nombre 
-        const nameRegex = /^[\p{L}\s]+$/u; 
+        // 1. Validación del Nombre (Permite letras, acentos, ñÑ y espacios)
+        const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; 
 
         if (!formData.nombre.trim()) {
             errors.nombre = 'El nombre no puede estar vacío.';
             isValid = false;
         } else if (!nameRegex.test(formData.nombre)) {
-            errors.nombre = 'El nombre solo puede contener letras y espacios (sin números ni caracteres especiales).';
+            errors.nombre = 'El nombre solo puede contener letras y espacios.';
             isValid = false;
         }
 
         // 2. Validación del Correo Electrónico 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!formData._replyto || !emailRegex.test(formData._replyto)) {
-            errors._replyto = 'El correo electrónico no tiene un formato válido (ej: nombre@dominio.com).';
+            errors._replyto = 'El correo electrónico no tiene un formato válido.';
             isValid = false;
         }
 
@@ -64,11 +83,17 @@ const PedidoForm: React.FC = () => {
 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        // Manejo de la cantidad para asegurar que sea un número
+        const value = e.target.name === 'cantidad' 
+            ? parseInt(e.target.value) || 0 
+            : e.target.value;
+
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [e.target.name]: value
         });
-       
+        
+        // Limpia el error de validación cuando el usuario empieza a escribir
         if (validationErrors[e.target.name]) {
             setValidationErrors(prev => ({ ...prev, [e.target.name]: undefined }));
         }
@@ -78,7 +103,7 @@ const PedidoForm: React.FC = () => {
         e.preventDefault();
 
         if (!validate()) {
-            setStatus('idle'); // No enviar si la validación falla
+            setStatus('idle'); 
             return; 
         }
 
@@ -89,7 +114,8 @@ const PedidoForm: React.FC = () => {
         try {
             const response = await fetch(form.action, {
                 method: form.method,
-                body: new FormData(form),
+                // FormData captura automáticamente todos los campos con el atributo 'name'
+                body: new FormData(form), 
                 headers: {
                     'Accept': 'application/json'
                 }
@@ -97,6 +123,7 @@ const PedidoForm: React.FC = () => {
 
             if (response.ok) {
                 setStatus('success');
+                // Limpiar el formulario solo en caso de éxito
                 setFormData({ 
                     nombre: '', _replyto: '', telefono: '', producto: 'tartas', 
                     cantidad: 12, sabor: '', fechaEntrega: '', comentarios: ''
@@ -110,6 +137,7 @@ const PedidoForm: React.FC = () => {
         }
     };
 
+    // Estilos (Tailwind CSS)
     const inputStyle = "w-full p-3 border border-gray-300 rounded-lg focus:ring-pink-500 focus:border-pink-500 transition duration-150 shadow-sm";
     const errorInputStyle = "w-full p-3 border border-red-500 rounded-lg focus:ring-red-500 focus:border-red-500 transition duration-150 shadow-sm";
     const labelStyle = "block text-sm font-medium text-gray-700 mb-1";
@@ -125,17 +153,6 @@ const PedidoForm: React.FC = () => {
         >
             <h2 className="text-3xl font-bold text-fuchsia-700 mb-6 text-center">Detalles del Encargo</h2>
             
-            {/* MEJORA UX */}
-            <div className="mb-8 p-4 bg-pink-100 border-l-4 border-fuchsia-500 text-sm text-gray-700 rounded">
-                <p className="font-semibold mb-1">¡Importante antes de pedir!</p>
-                <ul className="list-disc list-inside space-y-1 ml-4">
-                    <li>Tiempo de elaboración: Solicitamos un mínimo de <strong className="text-fuchsia-800">7 días de antelación</strong> para garantizar la disponibilidad.</li>
-                    <li>**Entrega/Recogida:** Los pedidos se recogen en el **lugar pautado** previamente. El servicio de envío tiene un costo adicional que será calculado en la confirmación.</li>
-                    <li>El presupuesto final se enviará a tu correo tras revisar tu solicitud.</li>
-                </ul>
-            </div>
-            {/* FIN MEJORA UX */}
-
             {/* Mensajes de feedback */}
             {status === 'success' && (
                 <div className="p-4 mb-4 rounded-lg bg-green-500 text-white font-semibold text-center">
@@ -213,14 +230,14 @@ const PedidoForm: React.FC = () => {
                         <select id="producto" name="producto" value={formData.producto} onChange={handleChange} required className={inputStyle}>
                             <option value="tartas">Bizcocho</option>
                             <option value="galletas">Tartas</option>
-                            <option value="galletas">Marquesa</option>
+                            <option value="marquesa">Marquesa</option>
                             <option value="cupcakes">Cupcakes</option>
                             <option value="golfeado">Golfeado</option>
-                            <option value="golfeado">Rols de Canela</option>
+                            <option value="rols_canela">Rols de Canela</option>
                             <option value="rosquetes">Rosquetes</option>
                             <option value="pan_de_jamon">Pan de Jamón</option>
                             <option value="pan_de_leche">Pan de Leche</option>
-                            <option value="pan_de_jamon">Tequeños</option>
+                            <option value="tequeños">Tequeños</option>
                             <option value="otro">Otro Postre</option>
                         </select>
                     </div>
@@ -241,7 +258,7 @@ const PedidoForm: React.FC = () => {
                     <div className="mt-4">
                         <label htmlFor="fechaEntrega" className={labelStyle}>Fecha de Entrega/Recogida Deseada:</label>
                         <input type="date" id="fechaEntrega" name="fechaEntrega" value={formData.fechaEntrega} onChange={handleChange} required className={inputStyle} />
-                        <p className="text-xs text-gray-500 mt-1">Por favor, realiza tu pedido con al menos 7 días de antelación.</p>
+                        <p className="text-xs text-gray-500 mt-1">Por favor, realiza tu pedido con al menos **7 días de antelación**.</p>
                     </div>
                 </fieldset>
                 
@@ -268,18 +285,17 @@ const PedidoForm: React.FC = () => {
                             className="form-checkbox h-5 w-5 text-fuchsia-600 border-gray-300 rounded focus:ring-fuchsia-500"
                         />
                         <span className="ml-2 text-sm text-gray-700">
-                            Confirmo que he leído la nota de <strong className="text-fuchsia-700">7 días de antelación</strong> y entiendo que esta es una solicitud, no un pedido confirmado.
+                            Confirmo que he leído la nota de **7 días de antelación** y entiendo que esta es una solicitud, no un pedido confirmado.
                         </span>
                     </label>
                 </div>
-                {/* FIN MEJORA UX */}
 
                 {/* Botón de Enviar */}
                 <button 
                     type="submit" 
                     disabled={status === 'sending'} 
                     className={`w-full py-3 mt-4 text-white font-semibold rounded-full transition duration-200 shadow-lg text-lg 
-                                ${status === 'sending' ? 'bg-gray-400 cursor-not-allowed' : buttonBase}`}
+                            ${status === 'sending' ? 'bg-gray-400 cursor-not-allowed' : buttonBase}`}
                 >
                     {status === 'sending' ? 'Enviando Solicitud...' : 'Enviar Solicitud de Pedido'}
                 </button>

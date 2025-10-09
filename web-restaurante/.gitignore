@@ -1,3 +1,34 @@
+# ----------------------------------------------------------------------
+# Dependencias
+# ----------------------------------------------------------------------
+/node_modules
+/package-lock.json
+
+# ----------------------------------------------------------------------
+# Builds (Directorios de salida de compilación)
+# ----------------------------------------------------------------------
+/build
+/dist
+/out
+/public/build
+
+# Directorios de compilación específicos de Vite/Next/etc.
+/dist-ssr
+/.next
+/.parcel-cache
+
+# ----------------------------------------------------------------------
+# Archivos de entorno y claves secretas (¡LO MÁS IMPORTANTE!)
+# ----------------------------------------------------------------------
+# Archivo de variables de entorno, que contiene las claves (ej. Formspree)
+.env
+# Archivos de entorno específicos por stage (ej. .env.development)
+.env.*.local
+.env.local
+
+# ----------------------------------------------------------------------
+# Logs y Caché
+# ----------------------------------------------------------------------
 # Logs
 logs
 *.log
@@ -7,18 +38,38 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Caché de depuración y build
+.cache
+.local
+*.tsbuildinfo
+.eslintcache
 
-# Editor directories and files
+# ----------------------------------------------------------------------
+# IDEs y Editores (Archivos de configuración personal)
+# ----------------------------------------------------------------------
+# Visual Studio Code
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# JetBrains IDEs (WebStorm, IntelliJ)
 .idea
-.DS_Store
+
+# Varios archivos de sistema y de otros editores
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+*.swp
+.DS_Store
+
+# Archivos de pruebas
+coverage
+
+# ----------------------------------------------------------------------
+# Entornos de desarrollo locales (que no deben subirse)
+# ----------------------------------------------------------------------
+*.local
+
