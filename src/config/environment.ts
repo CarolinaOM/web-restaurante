@@ -1,3 +1,5 @@
+// src/config/environment.ts (DEBE ESTAR ASÍ)
+
 export const FORMSPREE_PEDIDO_URL: string = 
   import.meta.env.VITE_FORMSPREE_PEDIDO_KEY as string; 
 
