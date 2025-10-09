@@ -1,73 +1,32 @@
-# React + TypeScript + Vite
+# 🧁 Macarmideli | Pastelería Artesanal Online
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Sitio Web Desplegado
+¡Visita el proyecto en vivo!
 
-Currently, two official plugins are available:
+[https://macarmideli.netlify.app/](https://macarmideli.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🍰 Descripción del Proyecto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Este proyecto es el sitio web oficial de Macarmideli, una pastelería artesanal especializada en dulces venezolanos y repostería personalizada. 
 
-## Expanding the ESLint configuration
+El sitio sirve como escaparate digital para mostrar nuestros productos (tartas, pan de jamón, marquesas, etc.) y, lo más importante, proporciona un sistema de **Formulario de Pedidos** para que los clientes puedan solicitar encargos personalizados.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**Funcionalidades clave:**
+* **Diseño Responsivo:** Adaptado para visualizarse perfectamente en móviles, tablets y escritorio.
+* **Formularios Seguros:** Integración con **Formspree** para manejar de manera segura y confiable las solicitudes de Contacto y los Pedidos.
+* **Enrutamiento SPA:** Navegación fluida de una sola página sin recargas completas.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠️ Tecnologías Utilizadas
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+El proyecto fue desarrollado utilizando el ecosistema de JavaScript moderno y React, optimizado por Vite.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+* **Framework Principal:** **React** (Vite)
+* **Lenguaje:** **TypeScript** (`.tsx`) para un código más robusto y con tipado estricto.
+* **Estilos:** **Tailwind CSS** para un desarrollo rápido y flexible de estilos.
+* **Despliegue (Hosting):** **Netlify**
+* **Manejo de Formularios:** **Formspree** (para el backend de los formularios)
+* **Control de Versiones:** **Git & GitHub**
