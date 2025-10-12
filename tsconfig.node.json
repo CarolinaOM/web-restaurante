@@ -1,28 +1,17 @@
 // tsconfig.node.json
 {
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-    "target": "ES2023",
-    "lib": ["ES2023"],
-    "module": "ESNext",
-    "types": ["node"],
-    "skipLibCheck": true,
-
-    // ⚠️ CAMBIO CLAVE: USAR "node16" para solucionar el error TS2307
+    "composite": true,
+    // ⚠️ CAMBIO 1: El módulo debe ser Node16
+    "module": "Node16", 
+    
+    // ⚠️ CAMBIO 2: La resolución también debe ser node16
     "moduleResolution": "node16", 
     
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "moduleDetection": "force",
-    "noEmit": true,
-
-    /* Linting */
+    "allowSyntheticDefaultImports": true,
+    "types": ["node"],
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "esModuleInterop": true
   },
   "include": ["vite.config.ts"]
 }
