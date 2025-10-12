@@ -1,0 +1,6 @@
+# netlify.toml
+
+[build]
+# Define la versión de Node.js que usará el servidor de Netlify.
+# Esto asegura compatibilidad con moduleResolution: "node16".
+environment = { NODE_VERSION = "18" }
