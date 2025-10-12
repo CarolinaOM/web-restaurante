@@ -2,6 +2,7 @@
   "compilerOptions": {
     "composite": true,
     "module": "ESNext",
+    // ⚠️ ESTA ES LA LÍNEA CLAVE QUE FALTA O NO SE HA APLICADO
     "moduleResolution": "node16", 
     "allowSyntheticDefaultImports": true,
     "types": ["node"],
