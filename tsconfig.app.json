@@ -1,13 +1,11 @@
+// tsconfig.app.json (Asegúrate que se vea así)
 {
   "compilerOptions": {
-    "composite": true,
-    "module": "ESNext",
-    // ⚠️ ESTA ES LA LÍNEA CLAVE QUE FALTA O NO SE HA APLICADO
-    "moduleResolution": "node16", 
-    "allowSyntheticDefaultImports": true,
-    "types": ["node"],
-    "strict": true,
-    "esModuleInterop": true
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    // ...
+    /* Bundler mode */
+    "moduleResolution": "bundler", // ⬅️ DEBE SER "bundler"
+    // ...
   },
-  "include": ["vite.config.ts"]
+  "include": ["src", "vite-env.d.ts"]
 }

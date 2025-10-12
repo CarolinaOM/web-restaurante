@@ -1,17 +1,8 @@
-// tsconfig.node.json (Modificar este archivo)
-
+// tsconfig.json
 {
-  "compilerOptions": {
-    // ... otras opciones ...
-    "composite": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "allowSyntheticDefaultImports": true,
-    
-    // ESTA LÍNEA ES LA CLAVE PARA EL ERROR 'NodeJS'
-    "types": ["node"], 
-    
-    // ... otras opciones ...
-  },
-  "include": ["vite.config.ts"] // o similar
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }
