@@ -11,11 +11,10 @@ import tartaImage from '../assets/tarta.jpg';
 import tartafrutaImage from '../assets/tartafruta.jpg'; 
 import tartafruta2Image from '../assets/tartafruta2.png'; 
 import quesoImage from '../assets/queso.png'; 
-// 🚨 NUEVAS IMPORTACIONES AÑADIDAS
 import panImage from '../assets/pan.png'; 
 import jamonImage from '../assets/jamon.png'; 
 
-// 🔑 DEFINICIÓN DE TODOS LOS PRODUCTOS DISPONIBLES
+// DEFINICIÓN DE TODOS LOS PRODUCTOS DISPONIBLES
 const allProducts = [
     {
         id: 'bizcocho-abuela',
@@ -130,12 +129,11 @@ const allProducts = [
     },
 ];
 
-// 🔑 DEFINICIÓN DE CATEGORÍAS USANDO LOS PRODUCTOS
+// DEFINICIÓN DE CATEGORÍAS USANDO LOS PRODUCTOS
 const categorizedItems = [
     {
         title: "Tartas de Ensueño",
         color: "text-pink-600",
-        // 5 elementos
         items: [
             allProducts[0], 
             allProducts[1], 
@@ -147,20 +145,18 @@ const categorizedItems = [
     {
         title: "Cupcakes",
         color: "text-fuchsia-700",
-        // Solo 1 elemento
         items: [
-            allProducts[5], // Cupcakes
+            allProducts[5], 
         ]
     },
     {
         title: "Panadería Venezolana",
         color: "text-purple-600",
-        // 🚨 CAMBIO CLAVE: Ahora 4 elementos (Golfeado, Rosquetes, Pan de Leche, Pan de Jamón)
         items: [
-            allProducts[6], // Golfeados
-            allProducts[7], // Rosquetes
-            allProducts[8], // ¡Nuevo Pan de Leche!
-            allProducts[9], // ¡Nuevo Pan de Jamón!
+            allProducts[6], 
+            allProducts[7], 
+            allProducts[8], 
+            allProducts[9], 
         ]
     },
 ];
@@ -188,7 +184,7 @@ const Gallery: React.FC = () => {
                     {categorizedItems.map((categoryGroup, groupIndex) => (
                         <div key={groupIndex} className="mb-16">
                             
-                            {/* TÍTULO DE LA SECCIÓN (Tartas de Ensueño, Cupcakes, etc.) */}
+                            {/* TÍTULO DE LA SECCIÓN */}
                             <h2 className={`text-4xl font-extrabold ${categoryGroup.color} mb-8 text-center`}>
                                 {categoryGroup.title}
                             </h2>

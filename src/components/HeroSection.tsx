@@ -8,7 +8,6 @@ const HeroSection: React.FC = () => {
   const fuchsiaAccent = 'text-fuchsia-700'; 
 
   return (
-    // AJUSTES: Altura compacta y fondo rosa muy suave (bg-pink-50)
     <section 
       className="relative h-[45vh] md:h-[55vh] bg-pink-50 flex items-center justify-center p-2" 
     >

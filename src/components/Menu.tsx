@@ -3,15 +3,12 @@ import React from 'react';
 import Header from './Header'; 
 import Footer from './Footer'; 
 
-// Definición de la estructura de un artículo de menú
 interface MenuItem {
     name: string;
     description: string;
     price: string;
     featured: boolean;
 }
-
-// Definición de la estructura de una sección de menú
 interface MenuSection {
     title: string;
     icon: string; 

@@ -3,39 +3,11 @@ import React from 'react';
 import Header from './Header'; 
 import Footer from './Footer'; 
 import { useForm, ValidationError } from '@formspree/react';
-// 🔑 Importación de la ID del formulario (obtenida de environment.ts)
+//Importación de la ID del formulario 
 import { FORMSPREE_CONTACT_ID } from '../config/environment'; 
 
-// Componente Auxiliar para los Íconos de Redes Sociales
-const SocialIcons: React.FC = () => (
-    <div className="flex justify-center lg:justify-start space-x-6 mt-4">
-        {/* Instagram */}
-        <a 
-            href="https://www.instagram.com/macarmideli/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-fuchsia-700 hover:text-pink-600 transition duration-300 transform hover:scale-110"
-            aria-label="Instagram"
-        >
-            <i className="fab fa-instagram text-4xl"></i>
-        </a>
-        
-        {/* Facebook */}
-        <a 
-            href="https://www.facebook.com/macarmideli.macarmideli" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-fuchsia-700 hover:text-pink-600 transition duration-300 transform hover:scale-110"
-            aria-label="Facebook"
-        >
-            <i className="fab fa-facebook-f text-4xl"></i>
-        </a>
-    </div>
-);
-
-
 const Contact: React.FC = () => {
-    // 🔑 USO DE LA CONSTANTE: useForm obtiene la ID del archivo environment.ts
+    //USO DE LA CONSTANTE: useForm obtiene la ID del archivo environment.ts
     const [state, handleSubmit] = useForm(FORMSPREE_CONTACT_ID);  
 
     // Función para manejar la pulsación de teclas y permitir solo letras y espacio
@@ -158,7 +130,7 @@ const Contact: React.FC = () => {
                             </form>
                         </div>
 
-                        {/* COLUMNA 2: INFORMACIÓN SIMPLIFICADA */}
+                      
                         <div className="bg-white p-8 rounded-xl shadow-2xl border border-pink-200 hover:shadow-fuchsia-400/70 transition duration-300 flex flex-col justify-center items-center lg:items-start text-center lg:text-left">
                             <h2 className="text-3xl font-bold text-fuchsia-700 mb-6">
                                 Conéctate con Nosotros
@@ -178,7 +150,33 @@ const Contact: React.FC = () => {
                             {/* Redes Sociales */}
                             <div>
                                 <h3 className="text-xl font-bold text-gray-800 mb-2">Síguenos</h3>
-                                <SocialIcons />
+                                <div className="flex justify-center lg:justify-start space-x-6 mt-4">
+                                    {/* Instagram (SVG) */}
+                                    <a 
+                                        href="https://www.instagram.com/macarmideli/" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="text-fuchsia-700 hover:text-pink-600 transition duration-300 transform hover:scale-110"
+                                        aria-label="Instagram"
+                                    >
+                                        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7.74 2h8.52C18.66 2 21 4.34 21 7.74v8.52c0 3.4-2.34 5.74-4.74 5.74H7.74C4.34 22 2 19.66 2 16.26V7.74C2 4.34 4.34 2 7.74 2zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm4.8-6.2a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4z"/>
+                                        </svg>
+                                    </a>
+                                    
+                                    {/* Facebook (SVG) */}
+                                    <a 
+                                        href="https://www.facebook.com/macarmideli.macarmideli" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="text-fuchsia-700 hover:text-pink-600 transition duration-300 transform hover:scale-110"
+                                        aria-label="Facebook"
+                                    >
+                                        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.63 9.15 8.36 9.87V15H7.72v-3h2.64V9.75c0-2.61 1.59-4.04 3.92-4.04 1.12 0 2.08.08 2.36.12v2.7h-1.65c-1.29 0-1.54.61-1.54 1.51V12h3.04l-.49 3h-2.55v6.87C18.37 21.15 22 16.99 22 12z"/>
+                                        </svg>
+                                    </a>
+                                </div>
                             </div>
                         </div>
 

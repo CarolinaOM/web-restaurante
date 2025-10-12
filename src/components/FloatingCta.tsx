@@ -2,10 +2,8 @@
 import React from 'react';
 
 const FloatingCta: React.FC = () => {
-    // URL de WhatsApp para iniciar un chat (reemplaza '600123456' con tu número real)
+    // URL de WhatsApp para iniciar un chat 
     const whatsappUrl = "https://wa.me/600123456"; 
-    
-    // Clase base para el color de MacarmiDeli
     const buttonBaseBg = 'bg-pink-600'; 
     const buttonHoverBg = 'hover:bg-pink-700'; 
 

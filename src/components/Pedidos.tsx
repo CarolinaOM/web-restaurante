@@ -2,7 +2,7 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import PedidoForm from './PedidoForm.tsx'; // CLAVE: Importamos el nuevo componente del formulario
+import PedidoForm from './PedidoForm.tsx'; 
 
 const Pedidos: React.FC = () => {
     return (

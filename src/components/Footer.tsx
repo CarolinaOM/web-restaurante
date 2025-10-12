@@ -3,9 +3,8 @@ import React from 'react';
 import logoImage from '../assets/logo.png'; 
 
 const Footer: React.FC = () => {
-    // Colores de marca unificados
     const fuchsiaAccent = 'text-fuchsia-700';
-    const pinkBg = 'bg-pink-100'; // Un fondo que armoniza
+    const pinkBg = 'bg-pink-100'; 
     const hoverColor = 'hover:text-pink-600';
 
     return (
@@ -20,10 +19,6 @@ const Footer: React.FC = () => {
                     <p className="text-sm text-gray-600">
                         El dulce arte de la felicidad.
                     </p>
-                    
-                    {/* CLAVE: Hemos eliminado las líneas del teléfono (línea 17 y 18 originales) */}
-                    
-                    {/* El Email ocupa ahora el lugar principal de contacto */}
                     <p className="mt-4 text-sm text-gray-700">
                         <span className="font-semibold">Contactanos por:</span> <a href="mailto:macarmideli@gmail.com" className={hoverColor}>macarmideli@gmail.com</a>
                     </p>

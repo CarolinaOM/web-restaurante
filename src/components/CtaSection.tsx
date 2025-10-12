@@ -2,7 +2,6 @@
 import React from 'react';
 
 const CtaSection: React.FC = () => {
-    // Colores de marca unificados
     const buttonBaseBg = 'bg-white';     
     const buttonBaseText = 'text-pink-600';
     const buttonHoverBg = 'hover:bg-gray-100'; 

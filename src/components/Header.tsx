@@ -4,8 +4,6 @@ import logoImage from '../assets/logo.png';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  // Colores de marca unificados (Rosa/Fucsia)
   const hoverColor = 'hover:text-pink-700';    
   const buttonBaseBg = 'bg-pink-600';     
   const buttonHoverBg = 'hover:bg-pink-700'; 
@@ -23,7 +21,7 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-32"> 
           
-          {/* LOGO DEL RESTAURANTE (IMAGEN) */}
+          {/* LOGO DEL RESTAURANTE  */}
           <a href="/" className="flex items-center space-x-2">
             <img 
               src={logoImage} 
@@ -50,7 +48,7 @@ const Header: React.FC = () => {
           <div className="flex items-center">
             {/* Botón de "Pedidos" */}
             <a 
-               href="/pedidos" // Ahora apunta a la ruta de contacto/pedidos
+               href="/pedidos" 
                className={`hidden md:block ${buttonBaseBg} ${buttonHoverBg} text-white font-semibold py-2 px-4 rounded-full transition duration-300 shadow-lg text-sm`}
             >
               ¡Hacer Pedido!

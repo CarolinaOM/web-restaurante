@@ -1,9 +1,8 @@
 // src/components/PedidoForm.tsx
 
 import React, { useState, useEffect } from 'react'; 
-import { FORMSPREE_PEDIDO_URL } from '../config/environment'; // Importa la URL del pedido
+import { FORMSPREE_PEDIDO_URL } from '../config/environment'; 
 
-// Define la estructura del estado de errores de validación
 interface ValidationErrors {
     nombre?: string;
     _replyto?: string;
@@ -23,7 +22,7 @@ const PedidoForm: React.FC = () => {
         nombre: '',
         _replyto: '',
         telefono: '',
-        producto: 'tartas', // Valor inicial para el <select>
+        producto: 'tartas',
         cantidad: 12,
         sabor: '',
         fechaEntrega: '',
@@ -137,7 +136,6 @@ const PedidoForm: React.FC = () => {
         }
     };
 
-    // Estilos (Tailwind CSS)
     const inputStyle = "w-full p-3 border border-gray-300 rounded-lg focus:ring-pink-500 focus:border-pink-500 transition duration-150 shadow-sm";
     const errorInputStyle = "w-full p-3 border border-red-500 rounded-lg focus:ring-red-500 focus:border-red-500 transition duration-150 shadow-sm";
     const labelStyle = "block text-sm font-medium text-gray-700 mb-1";
