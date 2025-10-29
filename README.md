@@ -1,5 +1,7 @@
 # 🧁 Macarmideli | Pastelería Artesanal Online
 
+**![Macarmideli - Pastelería Artesanal](src/assets/macarmideli.png)**
+
 ## 🚀 Sitio Web Desplegado
 ¡Visita el proyecto en vivo!
 
@@ -9,7 +11,7 @@
 
 ## 🍰 Descripción del Proyecto
 
-Este proyecto es el sitio web oficial de Macarmideli, una pastelería artesanal especializada en dulces venezolanos y repostería personalizada. 
+Este proyecto es el sitio web oficial de Macarmideli, una pastelería artesanal especializada en dulces venezolanos y repostería personalizada.
 
 El sitio sirve como escaparate digital para mostrar nuestros productos (tartas, pan de jamón, marquesas, etc.) y, lo más importante, proporciona un sistema de **Formulario de Pedidos** para que los clientes puedan solicitar encargos personalizados.
 
